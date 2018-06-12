@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=mtg_deckbuilder
+POSTGRES_USER=ZBexkquOFvFnrdeMXeDtfxgTmXNcEFEi
+POSTGRES_PASSWORD=MSXb6o669cVhaXxUF5GrRDAbaHs6SXpcEWMRXa1rkXiDo5YDjx8SZsFuMe5Tmshi

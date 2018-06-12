@@ -325,6 +325,19 @@ pyflakes = ">=1.5.0,<1.7.0"
 pycodestyle = ">=2.0.0,<2.4.0"
 mccabe = ">=0.6.0,<0.7.0"
 [[package]]
+name = "hypothesis"
+version = "3.57.0"
+description = "A library for property based testing"
+category = "dev"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+platform = "*"
+
+[package.dependencies]
+attrs = ">=16.0.0"
+coverage = "*"
+enum34 = "*"
+[[package]]
 name = "idna"
 version = "2.6"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -881,7 +894,7 @@ platform = "*"
 [metadata]
 python-versions = "^3.6.5"
 platform = "*"
-content-hash = "a1a02482e096b0490f2007ae1546e344d9f37f320faf4508f345c4da54625b4e"
+content-hash = "0c5299822e7bee499dae424821f9667eccce10548eb897a21e71e301375ee479"
 
 [metadata.hashes]
 alabaster = [ "2eef172f44e8d301d25aff8068fddd65f767a3f04b5f15b0f4922f113aa1c732", "37cdcb9e9954ed60912ebc1ca12a9d12178c26637abdf124e3cde2341c257fe0",]
@@ -914,6 +927,7 @@ docutils = [ "7a4bd47eaf6596e1295ecb11361139febe29b084a87bf005bf899f9a42edc3c6",
 factory-boy = [ "d552cb872b310ae78bd7429bf318e42e1e903b1a109e899a523293dfa762ea4f", "6f25cc4761ac109efd503f096e2ad99421b1159f01a29dbb917359dcd68e08ca",]
 faker = [ "782a58cec0e083df8e3536b0a890fce9bdc1633782c140b64183dcc626fea53e", "a77a1a2223a8e0d32618878350bbd2171040f32b526ba2cddfab8864704bb370",]
 flake8 = [ "c7841163e2b576d435799169b78703ad6ac1bbb0f199994fc05f700b2a90ea37", "7253265f7abd8b313e3892944044a365e3f4ac3fcdcfb4298f55ee9ddf188ba0",]
+hypothesis = [ "ceb4d9b582184b041adc5647121fbafe3fcf49b7fbd218195d903c3fc6bc7916",]
 idna = [ "8c7309c718f94b3a625cb648ace320157ad16ff131ae0af362c9f21b80ef6ec4", "2c6a5de3089009e3da7c5dde64a141dbc8551d5b7f6cf4ed7c2568d0cc520a8f",]
 imagesize = [ "3620cc0cadba3f7475f9940d22431fc4d407269f1be59ec9b8edcca26440cf18", "5b326e4678b6925158ccc66a9fa3122b6106d7c876ee32d7de6ce59385b96315",]
 ipdb = [ "7081c65ed7bfe7737f83fa4213ca8afd9617b42ff6b3f1daf9a3419839a2a00a",]

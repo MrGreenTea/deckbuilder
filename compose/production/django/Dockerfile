@@ -14,10 +14,13 @@ RUN apk update \
 RUN addgroup -S django \
     && adduser -S -G django django
 
+RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+RUN poetry config settings.virtualenvs.create false
+
 # Requirements are installed here to ensure they will be cached.
-COPY ./requirements /requirements
-RUN pip install --no-cache-dir -r /requirements/production.txt \
-    && rm -rf /requirements
+COPY pyproject.* ./
+RUN poetry install
+RUN rm pyproject.*
 
 COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r//' /entrypoint

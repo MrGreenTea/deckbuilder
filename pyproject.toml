@@ -4,6 +4,11 @@ version = "0.1.0"
 description = ""
 authors = ["MrGreenTea <mrlordalfred@gmail.com>"]
 
+[tool.black]
+py36=true
+line-length=120
+
+
 [tool.poetry.dependencies]
 python = "^3.6.5"
 pytz="^2018.4"  # https://github.com/stub42/pytz

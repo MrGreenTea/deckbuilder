@@ -7,6 +7,7 @@ repos:
     types: [python]
     language: system
     exclude: migrations/
+    args: ['--disable=fixme']
 - repo: https://github.com/ambv/black
   rev: stable
   hooks:

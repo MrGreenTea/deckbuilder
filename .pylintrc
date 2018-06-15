@@ -1,6 +1,6 @@
 [MASTER]
 load-plugins=pylint_common, pylint_django
-ignore=migrations
+ignore=migrations,tests
 
 [FORMAT]
 max-line-length=120
@@ -9,7 +9,7 @@ max-line-length=120
 disable=missing-docstring
 
 [DESIGN]
-max-parents=13
+max-parents=14
 
 [TYPECHECK]
 generated-members=REQUEST,acl_users,aq_parent,"[a-zA-Z]+_set{1,2}",save,delete

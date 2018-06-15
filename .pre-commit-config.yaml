@@ -6,11 +6,13 @@ repos:
     entry: python -m pylint.__main__
     types: [python]
     language: system
+    exclude: migrations/
 - repo: https://github.com/ambv/black
   rev: stable
   hooks:
   - id: black
     language_version: python3.6
+    exclude: migrations/
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v1.3.0
   hooks:

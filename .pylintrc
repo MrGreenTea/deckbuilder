@@ -6,6 +6,7 @@ ignore=migrations,tests
 max-line-length=120
 
 [MESSAGES CONTROL]
+enable=all
 disable=missing-docstring
 
 [DESIGN]

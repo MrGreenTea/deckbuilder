@@ -6,7 +6,6 @@ repos:
     entry: python -m pylint.__main__
     types: [python]
     language: system
-
 - repo: https://github.com/ambv/black
   rev: stable
   hooks:

@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class CardsConfig(AppConfig):
-    name = 'cards'
+    name = 'mtg_deckbuilder.cards'

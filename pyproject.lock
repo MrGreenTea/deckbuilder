@@ -69,6 +69,34 @@ python-versions = "*"
 platform = "UNKNOWN"
 
 [[package]]
+name = "boto3"
+version = "1.7.39"
+description = "The AWS SDK for Python"
+category = "main"
+optional = true
+python-versions = "*"
+platform = "*"
+
+[package.dependencies]
+botocore = ">=1.10.39,<1.11.0"
+jmespath = ">=0.7.1,<1.0.0"
+s3transfer = ">=0.1.10,<0.2.0"
+[[package]]
+name = "botocore"
+version = "1.10.39"
+description = "Low-level, data-driven core of boto 3."
+category = "main"
+optional = true
+python-versions = "*"
+platform = "*"
+
+[package.dependencies]
+jmespath = ">=0.7.1,<1.0.0"
+docutils = ">=0.10"
+python-dateutil = ">=2.1,<3.0.0"
+ordereddict = "1.1"
+simplejson = "3.3.0"
+[[package]]
 name = "certifi"
 version = "2018.4.16"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -177,6 +205,19 @@ python-openid = ">=2.2.5"
 requests-oauthlib = ">=0.3.0"
 requests = "*"
 [[package]]
+name = "django-anymail"
+version = "3.0"
+description = "Django email integration for Amazon SES, Mailgun, Mailjet, Postmark, SendGrid, SendinBlue, SparkPost and other transactional ESPs"
+category = "main"
+optional = true
+python-versions = "*"
+platform = "*"
+
+[package.dependencies]
+six = "*"
+requests = ">=2.4.3"
+django = ">=1.8"
+[[package]]
 name = "django-coverage-plugin"
 version = "1.5.0"
 description = "Django template coverage.py plugin"
@@ -258,6 +299,17 @@ platform = "*"
 Django = ">=1.11"
 redis = ">=2.10.0"
 [[package]]
+name = "django-storages"
+version = "1.6.6"
+description = "Support for many storage backends in Django"
+category = "main"
+optional = true
+python-versions = "*"
+platform = "*"
+
+[package.dependencies]
+boto3 = ">=1.2.3"
+[[package]]
 name = "django-test-plus"
 version = "1.0.22"
 description = "django-test-plus provides useful additions to Django's default TestCase"
@@ -279,7 +331,7 @@ platform = "*"
 name = "docutils"
 version = "0.14"
 description = "Docutils -- Python Documentation Utilities"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 platform = "OS-independent"
@@ -297,7 +349,7 @@ platform = "*"
 Faker = ">=0.7.0"
 [[package]]
 name = "faker"
-version = "0.8.15"
+version = "0.8.16"
 description = "Faker is a Python package that generates fake data for you."
 category = "dev"
 optional = false
@@ -325,8 +377,26 @@ pyflakes = ">=1.5.0,<1.7.0"
 pycodestyle = ">=2.0.0,<2.4.0"
 mccabe = ">=0.6.0,<0.7.0"
 [[package]]
+name = "futures"
+version = "3.1.1"
+description = "Backport of the concurrent.futures package from Python 3.2"
+category = "main"
+optional = true
+python-versions = "*"
+platform = "UNKNOWN"
+
+[[package]]
+name = "gunicorn"
+version = "19.8.1"
+description = "WSGI HTTP Server for UNIX"
+category = "main"
+optional = true
+python-versions = ">=2.6, !=3.0.*, !=3.1.*"
+platform = "*"
+
+[[package]]
 name = "hypothesis"
-version = "3.57.0"
+version = "3.59.0"
 description = "A library for property based testing"
 category = "dev"
 optional = false
@@ -339,7 +409,7 @@ coverage = "*"
 enum34 = "*"
 [[package]]
 name = "idna"
-version = "2.6"
+version = "2.7"
 description = "Internationalized Domain Names in Applications (IDNA)"
 category = "main"
 optional = false
@@ -434,6 +504,15 @@ platform = "*"
 
 [package.dependencies]
 MarkupSafe = ">=0.23"
+[[package]]
+name = "jmespath"
+version = "0.9.3"
+description = "JSON Matching Expressions"
+category = "main"
+optional = true
+python-versions = "*"
+platform = "UNKNOWN"
+
 [[package]]
 name = "markupsafe"
 version = "1.0"
@@ -551,7 +630,7 @@ wcwidth = "*"
 name = "psycopg2"
 version = "2.7.4"
 description = "psycopg2 - Python-PostgreSQL Database Adapter"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 platform = "any"
@@ -665,7 +744,7 @@ termcolor = ">=1.1.0"
 name = "python-dateutil"
 version = "2.7.3"
 description = "Extensions to the standard Python datetime module"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 platform = "*"
@@ -702,6 +781,17 @@ python-versions = "*"
 platform = "Independent"
 
 [[package]]
+name = "raven"
+version = "6.9.0"
+description = "Raven is a client for Sentry (https://getsentry.com)"
+category = "main"
+optional = true
+python-versions = "*"
+platform = "*"
+
+[package.dependencies]
+contextlib2 = "*"
+[[package]]
 name = "redis"
 version = "2.10.6"
 description = "Python client for Redis key-value store"
@@ -712,18 +802,18 @@ platform = "*"
 
 [[package]]
 name = "requests"
-version = "2.18.4"
+version = "2.19.1"
 description = "Python HTTP for Humans."
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 platform = "*"
 
 [package.dependencies]
 certifi = ">=2017.4.17"
+urllib3 = ">=1.21.1,<1.24"
+idna = ">=2.5,<2.8"
 chardet = ">=3.0.2,<3.1.0"
-idna = ">=2.5,<2.7"
-urllib3 = ">=1.21.1,<1.23"
 [[package]]
 name = "requests-oauthlib"
 version = "1.0.0"
@@ -736,6 +826,18 @@ platform = "*"
 [package.dependencies]
 requests = ">=2.0.0"
 oauthlib = ">=0.6.2"
+[[package]]
+name = "s3transfer"
+version = "0.1.13"
+description = "An Amazon S3 Transfer Manager"
+category = "main"
+optional = true
+python-versions = "*"
+platform = "*"
+
+[package.dependencies]
+botocore = ">=1.3.0,<2.0.0"
+futures = ">=2.2.0,<4.0.0"
 [[package]]
 name = "simplegeneric"
 version = "0.8.1"
@@ -857,11 +959,11 @@ platform = "*"
 
 [[package]]
 name = "urllib3"
-version = "1.22"
+version = "1.23"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4"
 platform = "*"
 
 [[package]]
@@ -894,7 +996,10 @@ platform = "*"
 [metadata]
 python-versions = "^3.6.5"
 platform = "*"
-content-hash = "0c5299822e7bee499dae424821f9667eccce10548eb897a21e71e301375ee479"
+content-hash = "ff1c13a5829acac9c4741d63c4a4bbac468cc6e27c47965182b13a2c209b483d"
+
+[extras]
+deploy = [ "raven", "gunicorn", "django-storages", "django-anymail",]
 
 [metadata.hashes]
 alabaster = [ "2eef172f44e8d301d25aff8068fddd65f767a3f04b5f15b0f4922f113aa1c732", "37cdcb9e9954ed60912ebc1ca12a9d12178c26637abdf124e3cde2341c257fe0",]
@@ -904,6 +1009,8 @@ atomicwrites = [ "a24da68318b08ac9c9c45029f4a10371ab5b20e4226738e150e6e7c571630a
 attrs = [ "4b90b09eeeb9b88c35bc642cbac057e45a5fd85367b985bd2809c62b7b939265", "e0d0eb91441a3b53dab4d9b743eafc1ac44476296a2053b6ca3af0b139faf87b",]
 babel = [ "6778d85147d5d85345c14a26aada5e478ab04e39b078b0745ee6870c2b5cf669", "8cba50f48c529ca3fa18cf81fa9403be176d374ac4d60738b839122dfaaa3d23",]
 backcall = [ "38ecd85be2c1e78f77fd91700c76e14667dc21e2713b63876c0eb901196e01e4", "bbbf4b1e5cd2bdb08f915895b51081c041bac22394fdfcfdfbe9f14b77c08bf2",]
+boto3 = [ "256bd2c35f450eee8c978166a2391ae9fab88b25443d4c321a6889166697d260", "e647c065c3a9db1ea210fd9b082d630072e69e40e8524149819121082d4e0192",]
+botocore = [ "8caf8c8a165e8f1d880d952a4aaf05fdd57e0857f6d5640fe267840bdc2ae667", "87fe59966e2a31efbb80b279bc0dc7273bc4c058cdd49f957de402804a544828",]
 certifi = [ "9fa520c1bacfb634fa7af20a76bcbd3d5fb390481724c597da32c719a7dca4b0", "13e698f54293db9f89122b0581843a782ad0934a4fe0172d2a980ba77fc61bb7",]
 cffi = [ "1b0493c091a1898f1136e3f4f991a784437fac3673780ff9de3bcf46c80b6b50", "87f37fe5130574ff76c17cab61e7d2538a16f843bb7bca8ebbc4b12de3078596", "1553d1e99f035ace1c0544050622b7bc963374a00c467edafac50ad7bd276aef", "151b7eefd035c56b2b2e1eb9963c90c6302dc15fbd8c1c0a83a163ff2c7d7743", "edabd457cd23a02965166026fd9bfd196f4324fe6032e866d0f3bd0301cd486f", "ba5e697569f84b13640c9e193170e89c13c6244c24400fc57e88724ef610cd31", "79f9b6f7c46ae1f8ded75f68cf8ad50e5729ed4d590c74840471fc2823457d04", "b0f7d4a3df8f06cf49f9f121bead236e328074de6449866515cea4907bbc63d6", "4c91af6e967c2015729d3e69c2e51d92f9898c330d6a851bf8f121236f3defd3", "7a33145e04d44ce95bcd71e522b478d282ad0eafaf34fe1ec5bbd73e662f22b6", "95d5251e4b5ca00061f9d9f3d6fe537247e145a8524ae9fd30a2f8fbce993b5b", "b75110fb114fa366b29a027d0c9be3709579602ae111ff61674d28c93606acca", "ae5e35a2c189d397b91034642cb0eab0e346f776ec2eb44a49a459e6615d6e2e", "fdf1c1dc5bafc32bc5d08b054f94d659422b05aba244d6be4ddc1c72d9aa70fb", "9d1d3e63a4afdc29bd76ce6aa9d58c771cd1599fbba8cf5057e7860b203710dd", "be2a9b390f77fd7676d80bc3cdc4f8edb940d8c198ed2d8c0be1319018c778e1", "ed01918d545a38998bfa5902c7c00e0fee90e957ce036a4000a88e3fe2264917", "857959354ae3a6fa3da6651b966d13b0a8bed6bbc87a0de7b38a549db1d2a359", "2ba8a45822b7aee805ab49abfe7eec16b90587f7f26df20c71dd89e45a97076f", "a36c5c154f9d42ec176e6e620cb0dd275744aa1d804786a71ac37dc3661a5e95", "e55e22ac0a30023426564b1059b035973ec82186ddddbac867078435801c7801", "3eb6434197633b7748cea30bf0ba9f66727cdce45117a712b29a443943733257", "ecbb7b01409e9b782df5ded849c178a0aa7c906cf8c5a67368047daab282b184", "770f3782b31f50b68627e22f91cb182c48c47c02eb405fd689472aa7b7aa16dc", "d5d8555d9bfc3f02385c1c37e9f998e2011f0db4f90e250e5bc0c0a85a813085", "3c85641778460581c42924384f5e68076d724ceac0f267d66c757f7535069c93", "e90f17980e6ab0f3c2f3730e56d1fe9bcba1891eeea58966e89d352492cc74f4",]
 chardet = [ "fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691", "84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae",]
@@ -914,6 +1021,7 @@ coverage = [ "7608a3dd5d73cb06c531b8925e0ef8d3de31fed2544a7de6c63960a1e73ea4bc",
 decorator = [ "2c51dff8ef3c447388fe5e4453d24a2bf128d3a4c32af3fabef1f01c6851ab82", "c39efa13fbdeb4506c476c9b3babf6a718da943dab7811c206005a4a956c080c",]
 django = [ "69ff89fa3c3a8337015478a1a0744f52a9fef5d12c1efa01a01f99bcce9bf10c", "3eb25c99df1523446ec2dc1b00e25eb2ecbdf42c9d8b0b8b32a204a8db9011f8",]
 django-allauth = [ "7d9646e3560279d6294ebb4c361fef829708d106da697658cf158bf2ca57b474",]
+django-anymail = [ "ea2302f0bb3b52c6abcb0a43a54ffcd7b5ef8e19d4c8f67dfeda2e23e26f4dc2", "a3c6d3793d5d2c2dbb5d8407c9881015d7733073aaa42865a0576ced27230a38",]
 django-coverage-plugin = [ "84b247a39885e59fa018b6b9ba07b034d2cb7df68c6ef372b2df90fe29272d69",]
 django-crispy-forms = [ "705ededc554ad8736157c666681165fe22ead2dec0d5446d65fc9dd976a5a876", "5952bab971110d0b86c278132dae0aa095beee8f723e625c3d3fa28888f1675f",]
 django-debug-toolbar = [ "4af2a4e1e932dadbda197b18585962d4fc20172b4e5a479490bc659fe998864d", "d9ea75659f76d8f1e3eb8f390b47fc5bad0908d949c34a8a3c4c87978eb40a0f",]
@@ -921,14 +1029,17 @@ django-environ = [ "e9c171b9d5f540e6f3bc42866941d9cd0bd77fb110a7c13a7c4857a2c08c
 django-extensions = [ "3be3debf53c77ca795bdf713726c923aa3c3f895e1a42e2e31a68c1a562346a4", "94bfac99eb262c5ac27e53eda96925e2e53fe0b331af7dde37012d07639a649c",]
 django-model-utils = [ "8cd377744aa45f9f131d652ec460c57d1aaa88d3e9b586c8e27eb709341b9084", "2c057f3bf0859aba27f04389f0cedd2d48f8c9b3848acb86fd9970794e58f477",]
 django-redis = [ "a90343c33a816073b735f0bed878eaeec4f83b75fcc0dce2432189b8ea130424", "15b47faef6aefaa3f47135a2aeb67372da300e4a4cf06809c66ab392686a2155",]
+django-storages = [ "f1dd5668a4df9a23aff56c8321ea3aac3fda23d9d17473158d308d1b13e5363e", "7339070cf0c8042f5a885783a0a909175a8dbb68e7f5697d597571c830a460c4",]
 django-test-plus = [ "cdfa439642c660a1c65af5add140a2dcf360e71daa65740d87e9e53cb8509d6b",]
 djangorestframework = [ "c375e4f95a3a64fccac412e36fb42ba36881e52313ec021ef410b40f67cddca4", "b6714c3e4b0f8d524f193c91ecf5f5450092c2145439ac2769711f7eba89a9d9",]
 docutils = [ "7a4bd47eaf6596e1295ecb11361139febe29b084a87bf005bf899f9a42edc3c6", "02aec4bd92ab067f6ff27a38a38a41173bf01bed8f89157768c1573f53e474a6", "51e64ef2ebfb29cae1faa133b3710143496eca21c530f3f71424d77687764274",]
 factory-boy = [ "d552cb872b310ae78bd7429bf318e42e1e903b1a109e899a523293dfa762ea4f", "6f25cc4761ac109efd503f096e2ad99421b1159f01a29dbb917359dcd68e08ca",]
-faker = [ "782a58cec0e083df8e3536b0a890fce9bdc1633782c140b64183dcc626fea53e", "a77a1a2223a8e0d32618878350bbd2171040f32b526ba2cddfab8864704bb370",]
+faker = [ "fe48f35aa3443bc5655b0782d3a2f594bf4882d0e2a947b80207a60494d32907", "04645d946256b835c675c1cef7c03817a164b0c4e452018fd50b212ddff08c22",]
 flake8 = [ "c7841163e2b576d435799169b78703ad6ac1bbb0f199994fc05f700b2a90ea37", "7253265f7abd8b313e3892944044a365e3f4ac3fcdcfb4298f55ee9ddf188ba0",]
-hypothesis = [ "ceb4d9b582184b041adc5647121fbafe3fcf49b7fbd218195d903c3fc6bc7916",]
-idna = [ "8c7309c718f94b3a625cb648ace320157ad16ff131ae0af362c9f21b80ef6ec4", "2c6a5de3089009e3da7c5dde64a141dbc8551d5b7f6cf4ed7c2568d0cc520a8f",]
+futures = [ "c4884a65654a7c45435063e14ae85280eb1f111d94e542396717ba9828c4337f", "51ecb45f0add83c806c68e4b06106f90db260585b25ef2abfcda0bd95c0132fd",]
+gunicorn = [ "7ef2b828b335ed58e3b64ffa84caceb0a7dd7c5ca12f217241350dec36a1d5dc", "bc59005979efb6d2dd7d5ba72d99f8a8422862ad17ff3a16e900684630dd2a10",]
+hypothesis = [ "758c8c5f28bc592614504ae3d770490865b5bdd51d01ed150f208dc698fbba32",]
+idna = [ "156a6814fb5ac1fc6850fb002e0852d56c0c8d2531923a51032d1b70760e186e", "684a38a6f903c1d71d6d5fac066b58d7768af4de2b832e426ec79c30daa94a16",]
 imagesize = [ "3620cc0cadba3f7475f9940d22431fc4d407269f1be59ec9b8edcca26440cf18", "5b326e4678b6925158ccc66a9fa3122b6106d7c876ee32d7de6ce59385b96315",]
 ipdb = [ "7081c65ed7bfe7737f83fa4213ca8afd9617b42ff6b3f1daf9a3419839a2a00a",]
 ipython = [ "a0c96853549b246991046f32d19db7140f5b1a644cc31f0dc1edc86713b7676f", "eca537aa61592aca2fef4adea12af8e42f5c335004dfa80c78caf80e8b525e5c",]
@@ -936,6 +1047,7 @@ ipython-genutils = [ "72dd37233799e619666c9f639a9da83c34013a73e8bbc79a7a6348d93c
 itypes = [ "c6e77bb9fd68a4bfeb9d958fea421802282451a25bac4913ec94db82a899c073",]
 jedi = [ "5861f6dc0c16e024cbb0044999f9cf8013b292c05f287df06d3d991a87a4eb89", "1972f694c6bc66a2fac8718299e2ab73011d653a6d8059790c3476d2353b99ad",]
 jinja2 = [ "74c935a1b8bb9a3947c50a54766a969d4846290e1e788ea44c1392163723c3bd", "f84be1bb0040caca4cea721fcbbbbd61f9be9464ca236387158b0feea01914a4",]
+jmespath = [ "f11b4461f425740a1d908e9a3f7365c3d2e569f6ca68a2ff8bc5bcd9676edd63", "6a81d4c9aa62caf061cb517b4d9ad1dd300374cd4706997aff9cd6aedd61fc64",]
 markupsafe = [ "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665",]
 mccabe = [ "ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42", "dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f",]
 more-itertools = [ "a18d870ef2ffca2b8463c0070ad17b5978056f403fb64e3f15fe62a52db21cc0", "6703844a52d3588f951883005efcf555e49566a48afd4db4e965d69b883980d3", "2b6b9893337bfd9166bee6a62c2b0c9fe7735dcf85948b387ec8cba30e85d8e8",]
@@ -962,9 +1074,11 @@ python-dateutil = [ "1adb80e7a782c12e52ef9a8182bebeb73f1d7e24e374397af06fb4956c8
 python-openid = [ "92c51c3ecec846cbec4aeff11f9ff47303d4a63f93b0e6ac0ec02a091fed70ef", "c2d133e47e0a7705c9272eef00d7a09c174f5bf17a127fed8e2c6499556cc782",]
 python-slugify = [ "5dbb360b882b2dabe0471a1a92f604504d83c2a73c71f2098d004ab62e695534",]
 pytz = [ "65ae0c8101309c45772196b21b74c46b2e5d11b6275c45d251b150d5da334555", "c06425302f2cf668f1bba7a0a03f3c1d34d4ebeef2c72003da308b3947c7f749",]
+raven = [ "95f44f3ea2c1b176d5450df4becdb96c15bf2632888f9ab193e9dd22300ce46a", "3fd787d19ebb49919268f06f19310e8112d619ef364f7989246fc8753d469888",]
 redis = [ "8a1900a9f2a0a44ecf6e8b5eb3e967a9909dfed219ad66df094f27f7d6f330fb", "a22ca993cea2962dbb588f9f30d0015ac4afcc45bee27d3978c0dbe9e97c6c0f",]
-requests = [ "6a1b267aa90cac58ac3a765d067950e7dbbf75b1da07e895d1f594193a40a38b", "9c443e7324ba5b85070c4a818ade28bfabedf16ea10206da1132edaa6dda237e",]
+requests = [ "63b52e3c866428a224f97cab011de738c36aec0185aa91cfacd418b5d58911d1", "ec22d826a36ed72a7358ff3fe56cbd4ba69dd7a6718ffd450ff0e9df7a47ce6a",]
 requests-oauthlib = [ "e21232e2465808c0e892e0e4dbb8c2faafec16ac6dc067dd546e9b466f3deac8", "fe3282f48fb134ee0035712159f5429215459407f6d5484013343031ff1a400d", "8886bfec5ad7afb391ed5443b1f697c6f4ae98d0e5620839d8b4499c032ada3f",]
+s3transfer = [ "c7a9ec356982d5e9ab2d4b46391a7d6a950e2b04c472419f5fdec70cc0ada72f", "90dc18e028989c609146e241ea153250be451e05ecc0c2832565231dacdf59c1",]
 simplegeneric = [ "dc972e06094b9af5b855b3df4a646395e43d1c9d0d39ed345b7393560d0b9173",]
 six = [ "832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb", "70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9",]
 snowballstemmer = [ "9f3bcd3c401c3e862ec0ebe6d2c069ebc012ce142cce209c098ccb5b09136e89", "919f26a68b2c17a7634da993d91339e288964f93c274f1343e3bbbe2096e1128",]
@@ -976,7 +1090,7 @@ text-unidecode = [ "801e38bd550b943563660a91de8d4b6fa5df60a542be9093f7abf819f860
 traitlets = [ "c6cb5e6f57c5a9bdaa40fa71ce7b4af30298fbab9ece9815b5d995ab6217c7d9", "9c4bd2d267b7153df9152698efb1050a5d84982d3384a37b2c1f7723ba3e7835",]
 unidecode = [ "72f49d3729f3d8f5799f710b97c1451c5163102e76d64d20e170aedbbd923582", "8c33dd588e0c9bc22a76eaa0c715a5434851f726131bd44a6c26471746efabf5",]
 uritemplate = [ "01c69f4fe8ed503b2951bef85d996a9d22434d2431584b5b107b2981ff416fbd", "1b9c467a940ce9fb9f50df819e8ddd14696f89b9a8cc87ac77952ba416e0a8fd", "c02643cebe23fc8adb5e6becffe201185bf06c40bda5c0b4028a93f1527d011d",]
-urllib3 = [ "06330f386d6e4b195fbfc736b297f58c5a892e4440e54d294d7004e3a9bbea1b", "cc44da8e1145637334317feebd728bd869a35285b93cbb4cca2577da7e62db4f",]
+urllib3 = [ "b5725a0bd4ba422ab0e66e89e030c806576753ea3ee08554382c14e685d117b5", "a68ac5e15e76e7e5dd2b8f94007233e01effe3e50e8daddf69acfd81cb686baf",]
 wcwidth = [ "f4ebe71925af7b40a864553f761ed559b43544f8f71746c2d756c7fe788ade7c", "3df37372226d6e63e1b1e1eda15c594bca98a22d33a23832a90998faa96bc65e",]
 werkzeug = [ "d5da73735293558eb1651ee2fddc4d0dedcfa06538b8813a2e20011583c9e49b", "c3fd7a7d41976d9f44db327260e263132466836cef6f91512889ed60ad26557c",]
 whitenoise = [ "15f43b2e701821b95c9016cf469d29e2a546cb1c7dead584ba82c36f843995cf", "9d81515f2b5b27051910996e1e860b1332e354d9e7bcf30c98f21dcb6713e0dd",]

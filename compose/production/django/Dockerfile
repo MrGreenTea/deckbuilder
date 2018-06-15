@@ -3,6 +3,7 @@ FROM python:3.6-alpine
 ENV PYTHONUNBUFFERED 1
 
 RUN apk update \
+  && apk add curl \
   # psycopg2 dependencies
   && apk add --virtual build-deps gcc python3-dev musl-dev \
   && apk add postgresql-dev \
@@ -14,12 +15,12 @@ RUN apk update \
 RUN addgroup -S django \
     && adduser -S -G django django
 
-RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+RUN set -o pipefail && curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 RUN poetry config settings.virtualenvs.create false
 
 # Requirements are installed here to ensure they will be cached.
 COPY pyproject.* ./
-RUN poetry install
+RUN poetry install --extras deploy --no-dev
 RUN rm pyproject.*
 
 COPY ./compose/production/django/entrypoint /entrypoint

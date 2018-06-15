@@ -11,6 +11,7 @@ class UsersAppConfig(AppConfig):
             Users signal registration
         """
         try:
-            import users.signals  # noqa F401
+            # TODO
+            import users.signals  # pylint: disable=unused-variable
         except ImportError:
             pass

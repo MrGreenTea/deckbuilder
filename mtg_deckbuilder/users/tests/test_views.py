@@ -1,19 +1,18 @@
 from django.test import RequestFactory
 
-from test_plus.test import TestCase
+from hypothesis.extra.django import TestCase
 
+from ..models import User
 from ..views import UserRedirectView, UserUpdateView
 
 
 class BaseUserTestCase(TestCase):
-
     def setUp(self):
-        self.user = self.make_user()
+        self.user = User.objects.create(username="testuser", password="testpassword")
         self.factory = RequestFactory()
 
 
 class TestUserRedirectView(BaseUserTestCase):
-
     def test_get_redirect_url(self):
         # Instantiate the view directly. Never do this outside a test!
         view = UserRedirectView()
@@ -29,7 +28,6 @@ class TestUserRedirectView(BaseUserTestCase):
 
 
 class TestUserUpdateView(BaseUserTestCase):
-
     def setUp(self):
         # call BaseUserTestCase.setUp()
         super(TestUserUpdateView, self).setUp()

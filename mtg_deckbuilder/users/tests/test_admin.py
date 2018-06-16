@@ -1,21 +1,17 @@
-from test_plus.test import TestCase
+from hypothesis.extra.django import TestCase
 
+from ..models import User
 from ..admin import MyUserCreationForm
 
 
 class TestMyUserCreationForm(TestCase):
-
     def setUp(self):
-        self.user = self.make_user("notalamode", "notalamodespassword")
+        self.user = User.objects.create(username="notalamode", password="notalamodespassword")
 
     def test_clean_username_success(self):
         # Instantiate the form with a new username
         form = MyUserCreationForm(
-            {
-                "username": "alamode",
-                "password1": "7jefB#f@Cc7YJB]2v",
-                "password2": "7jefB#f@Cc7YJB]2v",
-            }
+            {"username": "alamode", "password1": "7jefB#f@Cc7YJB]2v", "password2": "7jefB#f@Cc7YJB]2v"}
         )
         # Run is_valid() to trigger the validation
         valid = form.is_valid()
@@ -28,11 +24,7 @@ class TestMyUserCreationForm(TestCase):
     def test_clean_username_false(self):
         # Instantiate the form with the same username as self.user
         form = MyUserCreationForm(
-            {
-                "username": self.user.username,
-                "password1": "notalamodespassword",
-                "password2": "notalamodespassword",
-            }
+            {"username": self.user.username, "password1": "notalamodespassword", "password2": "notalamodespassword"}
         )
         # Run is_valid() to trigger the validation, which is going to fail
         # because the username is already taken

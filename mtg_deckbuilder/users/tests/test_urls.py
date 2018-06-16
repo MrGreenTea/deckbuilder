@@ -1,13 +1,10 @@
 from django.urls import reverse, resolve
 
-from test_plus.test import TestCase
+from hypothesis.extra.django import TestCase
 
 
 class TestUserURLs(TestCase):
     """Test URL patterns for users app."""
-
-    def setUp(self):
-        self.user = self.make_user()
 
     def test_list_reverse(self):
         """users:list should reverse to /users/."""
@@ -27,9 +24,7 @@ class TestUserURLs(TestCase):
 
     def test_detail_reverse(self):
         """users:detail should reverse to /users/testuser/."""
-        self.assertEqual(
-            reverse("users:detail", kwargs={"username": "testuser"}), "/users/testuser/"
-        )
+        self.assertEqual(reverse("users:detail", kwargs={"username": "testuser"}), "/users/testuser/")
 
     def test_detail_resolve(self):
         """/users/testuser/ should resolve to users:detail."""

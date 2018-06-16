@@ -1,16 +1,10 @@
-from test_plus.test import TestCase
+from hypothesis import given
+from hypothesis.extra.django import TestCase, models
+
+from ..models import User
 
 
 class TestUser(TestCase):
-
-    def setUp(self):
-        self.user = self.make_user()
-
-    def test__str__(self):
-        self.assertEqual(
-            self.user.__str__(),
-            "testuser",  # This is the default username for self.make_user()
-        )
-
-    def test_get_absolute_url(self):
-        self.assertEqual(self.user.get_absolute_url(), "/users/testuser/")
+    @given(models.models(User))
+    def test_get_absolute_url(self, user):
+        user.get_absolute_url()

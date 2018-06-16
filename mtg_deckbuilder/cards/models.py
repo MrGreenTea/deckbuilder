@@ -1,10 +1,35 @@
-import enum
+from enum import Enum
 
-from django.contrib.postgres import fields
+from django import forms
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
 
-class CardType(enum.Enum):
+class ChoiceArrayField(ArrayField):
+    """
+    A field that allows us to store an array of choices.
+
+    Uses Django 1.9's postgres ArrayField
+    and a MultipleChoiceField for its formfield.
+
+    Usage:
+
+        choices = ChoiceArrayField(models.CharField(max_length=...,
+                                                    choices=(...,)),
+                                   default=[...])
+    """
+
+    def formfield(self, **kwargs):
+        kwargs.setdefault("form_class", forms.MultipleChoiceField)
+        kwargs.setdefault("choices", self.base_field.choices)
+        return super(ArrayField, self).formfield(**kwargs)  # pylint:disable=bad-super-call
+
+
+def choices(enum):
+    return [(v.value, v.name) for v in enum]
+
+
+class CardType(Enum):
     Basic = "Basic"
     Legendary = "Legendary"
     Ongoing = "Ongoing"
@@ -24,56 +49,36 @@ class CardType(enum.Enum):
     Tribal = "Tribal"
     Vanguard = "Vanguard"
 
-    @classmethod
-    def choices(cls):
-        return [(v.value, v) for v in cls]
 
-
-class Color(enum.Enum):
+class Color(Enum):
     White = "W"
     Blue = "U"
     Black = "B"
     Red = "R"
     Green = "G"
 
-    @classmethod
-    def choices(cls):
-        return [(v.value, v) for v in cls]
-
 
 # Create your models here.
 class Card(models.Model):
     id = models.UUIDField(primary_key=True)
     name = models.CharField(max_length=256)
-    colors = fields.ArrayField(models.CharField(max_length=1, choices=Color.choices()))
-    color_identity = fields.ArrayField(models.CharField(max_length=1, choices=Color.choices()))
+    colors = ChoiceArrayField(models.CharField(max_length=1, choices=choices(Color)))
+    color_identity = ChoiceArrayField(models.CharField(max_length=1, choices=choices(Color)))
     cmc = models.DecimalField(max_digits=4, decimal_places=1)
-    card_types = fields.ArrayField(models.CharField(max_length=16, choices=CardType.choices()))
-    sub_types = fields.ArrayField(models.CharField(max_length=64), blank=True)
+    card_types = ChoiceArrayField(models.CharField(max_length=16, choices=choices(CardType)))
+    sub_types = ChoiceArrayField(models.CharField(max_length=64), blank=True)
     uri = models.URLField()
     scryfall_uri = models.URLField()
 
     @classmethod
     def from_dict(cls, card):
-        scry_id = card["id"]
-        name = card["name"]
-        cmc = card["cmc"]
-        uri = card["uri"]
-        scryfall_uri = card["scryfall_uri"]
+        keys = {f.name for f in cls._meta.fields} - {"sub_types", "card_types"}
 
         types = [t.split() for t in card["type_line"].split("—")]
         if len(types) < 2:
-            types += []
+            types += [[]]
         assert len(types) == 2, f'Error with parsing {card["type_line"]!r}'
         card_types, sub_types = types
         assert card_types, f'Error when parsing {card["type_line"]}'
 
-        return cls(
-            id=scry_id,
-            name=name,
-            cmc=cmc,
-            uri=uri,
-            scryfall_uri=scryfall_uri,
-            sub_types=sub_types,
-            card_types=card_types,
-        )
+        return cls.objects.create(**{key: card[key] for key in keys}, sub_types=sub_types, card_types=card_types)

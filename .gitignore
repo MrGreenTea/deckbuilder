@@ -171,6 +171,7 @@ typings/
 .idea/**/tasks.xml
 .idea/dictionaries
 .idea/usage.statistics.xml
+.idea/misc.xml
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/

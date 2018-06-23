@@ -4,6 +4,8 @@ language: python
 services:
   - docker
 
+env:
+  - COMPOSE_FILE=local.yml
 
 before_install:
   - docker-compose build

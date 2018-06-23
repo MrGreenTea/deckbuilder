@@ -22,4 +22,4 @@ repos:
     types: [python]
     language: system
     exclude: (migrations|tests)
-    args: ['--disable=fixme']
+    args: ['--disable=fixme,I']

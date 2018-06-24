@@ -6,7 +6,7 @@ services:
   - docker
 
 env:
-  - COMPOSE_FILE=production.yml
+  - COMPOSE_FILE=local.yml
 
 install:
   - docker-compose build --build-arg EXTRAS=test django

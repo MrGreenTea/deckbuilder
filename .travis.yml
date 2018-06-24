@@ -9,7 +9,8 @@ env:
   - COMPOSE_FILE=local.yml
 
 install:
-  - docker-compose build --build-arg EXTRA=test
+  - docker-compose build django --build-arg EXTRA=test
+  - docker-compose build
   - docker-compose up -d
   - docker ps -a
 script:

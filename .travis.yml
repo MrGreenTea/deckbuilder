@@ -9,15 +9,12 @@ env:
   - COMPOSE_FILE=local.yml
 
 install:
-  - docker-compose build --build-arg EXTRA=test django
+  - docker-compose build --build-arg EXTRAS=test django
   - docker-compose build
   - docker-compose up -d
   - docker ps -a
 script:
-  - docker-compose run django pytest --cov=mtg_deckbuilder --cov-report=xml
+  - docker-compose exec django /entrypoint pytest --cov=mtg_deckbuilder
 
 after_success:
-  - docker cp mtg_deckbuilder_django_run_1:/app/coverage.xml ./coverage.xml
-
-after_script:
-  - docker-compose down
+  - docker-compose exec django /entrypoint codecov

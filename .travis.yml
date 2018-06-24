@@ -7,9 +7,12 @@ services:
 env:
   - COMPOSE_FILE=local.yml
 
-before_install:
-  - docker-compose build
 install:
-  - docker-compose up
+  - docker-compose build
+  - docker-compose up -d
+  - docker ps -a
 script:
   - docker-compose run django pytest
+
+after_script:
+  - docker-compose down

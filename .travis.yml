@@ -6,7 +6,7 @@ services:
   - docker
 
 env:
-  - COMPOSE_FILE=local.yml
+  - COMPOSE_FILE=production.yml
 
 install:
   - docker-compose build --build-arg EXTRAS=test django
@@ -17,4 +17,4 @@ script:
   - docker-compose exec django /entrypoint pytest --cov=mtg_deckbuilder
 
 after_success:
-  - docker-compose exec django /entrypoint codecov
+  - docker-compose exec django /entrypoint codecov --commit=$TRAVIS_COMMITco

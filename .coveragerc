@@ -3,3 +3,6 @@ include = mtg_deckbuilder/*
 omit = *migrations*, *tests*
 plugins =
     django_coverage_plugin
+
+[xml]
+output=cov.xml

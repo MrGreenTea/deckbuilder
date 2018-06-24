@@ -20,7 +20,7 @@ RUN set -o pipefail && curl -sSL https://raw.githubusercontent.com/sdispater/poe
 RUN poetry config settings.virtualenvs.create false
 
 COPY pyproject.* ./
-RUN poetry install
+RUN poetry install  --extras=test
 
 COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r//' /entrypoint

@@ -38,25 +38,26 @@ gunicorn={version="^19.8.1", optional = true}  # https://github.com/benoitc/guni
 django-storages={version="^1.6.6", extras=["boto3"], optional = true}  # https://github.com/jschneier/django-storages
 django-anymail={version="^3.0", extras=["mailgun"], optional = true}  # https://github.com/anymail/django-anymail
 
+# Testing
+# ------------------------------------------------------------------------------
+pytest={version="^3.6.1", optional = true}  # https://github.com/pytest-dev/pytest
+pytest-sugar={version="^0.9.1", optional = true}  # https://github.com/Frozenball/pytest-sugar
+pytest-django={version="^3.2.1", optional = true}  # https://github.com/pytest-dev/pytest-django
+hypothesis={version="^3.57", optional = true}  # https://github.com/HypothesisWorks/hypothesis
+pytest-xdist = {version="^1.22", optional = true}
+pytest-cov = {version="^2.5", optional = true}
+django-coverage-plugin={version="^1.5.0", optional = true}  # https://github.com/nedbat/django_coverage_plugin
 
 [tool.poetry.dev-dependencies]
 Werkzeug="^0.14.1"  # https://github.com/pallets/werkzeug
 
-# Testing
-# ------------------------------------------------------------------------------
-pytest="^3.6.1"  # https://github.com/pytest-dev/pytest
-pytest-sugar="^0.9.1"  # https://github.com/Frozenball/pytest-sugar
-hypothesis = "^3.57"  # https://github.com/HypothesisWorks/hypothesis
-
 django-debug-toolbar="^1.9.1"  # https://github.com/jazzband/django-debug-toolbar
 django-extensions="^2.0.7"  # https://github.com/django-extensions/django-extensions
-django-coverage-plugin="^1.5.0"  # https://github.com/nedbat/django_coverage_plugin
-pytest-django="^3.2.1"  # https://github.com/pytest-dev/pytest-django
 pylint = "^1.9"
 pylint-common = "^0.2.5"
 pylint-django = "^0.11.1"
-pytest-xdist = "^1.22"
-pytest-cov = "^2.5"
 
 [tool.poetry.extras]
 deploy = ["raven","gunicorn","django-storages","django-anymail"]
+test = ["pytest", "pytest-sugar", "pytest-django", "hypothesis", "pytest-xdist", "pytest-cov", "django-coverage-plugin"]
+none = []

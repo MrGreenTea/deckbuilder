@@ -19,8 +19,9 @@ RUN set -o pipefail && curl -sSL https://raw.githubusercontent.com/sdispater/poe
 RUN poetry config settings.virtualenvs.create false
 
 # Requirements are installed here to ensure they will be cached.
+ARG EXTRAS=none
 COPY pyproject.* ./
-RUN poetry install --extras deploy --no-dev
+RUN poetry install --no-dev --extras deploy --extras $EXTRAS
 RUN rm pyproject.*
 
 COPY ./compose/production/django/entrypoint /entrypoint

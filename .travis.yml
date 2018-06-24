@@ -1,5 +1,6 @@
 sudo: required
 language: python
+python: "3.6"
 
 services:
   - docker
@@ -11,8 +12,9 @@ install:
   - docker-compose build
   - docker-compose up -d
   - docker ps -a
+  - docker-compose run django pytest --cov=mtg_deckbuilder --cov-report=xml
 script:
-  - docker-compose run django pytest
+  - pytest --cov=mtg_deckbuilder --cov-report=xml
 
 after_script:
   - docker-compose down

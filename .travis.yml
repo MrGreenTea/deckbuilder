@@ -5,7 +5,7 @@ services:
   - docker
 
 env:
-  - COMPOSE_FILE=production.yml
+  - COMPOSE_FILE=local.yml
 
 before_install:
   - docker-compose build

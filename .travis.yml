@@ -18,4 +18,4 @@ script:
 
 after_success:
   - echo $TRAVIS_COMMIT
-  - docker-compose exec django /entrypoint codecov --commit=$TRAVIS_COMMIT
+  - docker-compose exec django /entrypoint codecov --commit=$TRAVIS_COMMIT --token=$CODECOV_TOKEN

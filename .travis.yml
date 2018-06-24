@@ -17,4 +17,5 @@ script:
   - docker-compose exec django /entrypoint pytest --cov=mtg_deckbuilder
 
 after_success:
-  - docker-compose exec django /entrypoint codecov --commit=$TRAVIS_COMMITco
+  - echo $TRAVIS_COMMIT
+  - docker-compose exec django /entrypoint codecov --commit=$TRAVIS_COMMIT

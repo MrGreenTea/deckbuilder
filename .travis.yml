@@ -9,7 +9,7 @@ env:
   - COMPOSE_FILE=local.yml
 
 install:
-  - docker-compose build
+  - docker-compose build --build-args=test
   - docker-compose up -d
   - docker ps -a
   - docker-compose run django pytest --cov=mtg_deckbuilder --cov-report=xml
@@ -17,4 +17,5 @@ script:
   - pytest --cov=mtg_deckbuilder --cov-report=xml
 
 after_script:
+  - docker cp mtg_deckbuilder_django_run_1:/app/coverage.xml ./coverage.xml
   - docker-compose down

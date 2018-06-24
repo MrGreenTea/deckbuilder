@@ -5,4 +5,4 @@ plugins =
     django_coverage_plugin
 
 [xml]
-output=cov.xml
+output=coverage.xml

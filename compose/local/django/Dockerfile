@@ -3,7 +3,8 @@ FROM python:3.6-alpine
 ENV PYTHONUNBUFFERED 1
 
 RUN apk update \
-  && apk add curl \
+  # for testing and stuff
+  && apk add curl git\
   # psycopg2 dependencies
   && apk add --virtual build-deps gcc python3-dev musl-dev \
   && apk add postgresql-dev \

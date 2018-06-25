@@ -8,14 +8,16 @@ services:
 env:
   - COMPOSE_FILE=local.yml
 
+before_script:
+  - wget https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 --output-document=cc-testreporter
+  - chmod +x ./cc-test-reporter
+
 install:
-  - docker-compose build --build-arg EXTRAS=test django
-  - docker-compose build
-  - docker-compose up -d
+  - docker-compose up -d --build
   - docker ps -a
+  - docker cp cc-test-reporter mtg_deckbuilder_django_1:./cc-test-reporter
+  - docker-compose exec django ./cc-test-reporter before-build
 script:
   - docker-compose exec django /entrypoint pytest --cov=mtg_deckbuilder
-
-after_success:
-  - echo $TRAVIS_COMMIT
-  - docker-compose exec django /entrypoint codecov --commit=$TRAVIS_COMMIT --token=$CODECOV_TOKEN
+after_script:
+  - docker-compose exec django ./cc-test-reporter after-build --id=$CC_TEST_REPORTER_ID --exit-code $TRAVIS_TEST_RESULT

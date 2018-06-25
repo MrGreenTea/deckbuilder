@@ -36,4 +36,4 @@ script:
 
 after_script:
   - docker-compose exec django cat .coverage
-  - docker-compose exec django ./cc-test-reporter after-build --id=${CC_TEST_REPORTER_ID} --exit-code ${TRAVIS_TEST_RESULT}
+  - docker-compose exec django ./cc-test-reporter after-build --id=${CC_TEST_REPORTER_ID} --prefix=/app --exit-code ${TRAVIS_TEST_RESULT}

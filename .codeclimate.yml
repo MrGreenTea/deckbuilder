@@ -1,3 +1,5 @@
+version: "2"
+
 engines:
   duplication:
     enabled: true
@@ -5,3 +7,10 @@ engines:
       languages:
         python:
           python_version: 3
+
+exclude_patterns:
+  - config/
+  - docs/
+  - "**/tests/"
+  - "**/migrations/"
+  - ".*"

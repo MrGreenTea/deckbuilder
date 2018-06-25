@@ -8,6 +8,10 @@ services:
 env:
   - COMPOSE_FILE=local.yml PROJECT_NAME=mtg_deckbuilder
 
+before_install:
+  - docker --version
+  - docker-compose --version
+
 install:
   - docker-compose --project-name=$PROJECT_NAME up --detach --build
   - docker ps --all

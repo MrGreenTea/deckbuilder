@@ -77,8 +77,8 @@ class Card(models.Model):
         types = [t.split() for t in card["type_line"].split("—")]
         if len(types) < 2:
             types += [[]]
-        assert len(types) == 2, "Error with parsing {!r}".format(card["type_line"])
+        assert len(types) == 2, f"Error with parsing {card['type_line']!r}"
         card_types, sub_types = types
-        assert card_types, "Error when parsing {}".format(card["type_line"])
+        assert card_types, f"Error when parsing {card['type_line']}"
 
         return cls.objects.create(**{key: card[key] for key in keys}, sub_types=sub_types, card_types=card_types)

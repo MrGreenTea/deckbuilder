@@ -9,7 +9,7 @@ env:
   - COMPOSE_FILE=local.yml
 
 before_script:
-  - wget https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 --output-document=cc-testreporter
+  - wget https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 --output-document=./cc-test-reporter
   - chmod +x ./cc-test-reporter
 
 install:

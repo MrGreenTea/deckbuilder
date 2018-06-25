@@ -24,11 +24,9 @@ COPY pyproject.* ./
 RUN poetry install  --extras=test
 
 COPY ./compose/production/django/entrypoint /entrypoint
-RUN sed -i 's/\r//' /entrypoint
 RUN chmod +x /entrypoint
 
 COPY ./compose/local/django/start /start
-RUN sed -i 's/\r//' /start
 RUN chmod +x /start
 
 WORKDIR /app

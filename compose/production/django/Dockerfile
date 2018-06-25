@@ -25,12 +25,10 @@ RUN poetry install --no-dev --extras deploy --extras $EXTRAS
 RUN rm pyproject.*
 
 COPY ./compose/production/django/entrypoint /entrypoint
-RUN sed -i 's/\r//' /entrypoint
 RUN chmod +x /entrypoint
 RUN chown django /entrypoint
 
 COPY ./compose/production/django/start /start
-RUN sed -i 's/\r//' /start
 RUN chmod +x /start
 RUN chown django /start
 

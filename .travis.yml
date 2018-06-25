@@ -11,7 +11,7 @@ services:
   - docker
 
 env:
-  - DOCKER_COMPOSE_VERSION=1.21.0 COMPOSE_FILE=local.yml PROJECT_NAME=deckbuilder
+  - DOCKER_COMPOSE_VERSION=1.21.2 COMPOSE_FILE=local.yml PROJECT_NAME=deckbuilder
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
@@ -35,4 +35,5 @@ script:
   - docker-compose exec django /entrypoint pytest --cov=mtg_deckbuilder
 
 after_script:
+  - docker-compose exec django cat .coverage
   - docker-compose exec django ./cc-test-reporter after-build --id=${CC_TEST_REPORTER_ID} --exit-code ${TRAVIS_TEST_RESULT}

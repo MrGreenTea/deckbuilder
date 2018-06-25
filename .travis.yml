@@ -31,7 +31,7 @@ before_script:
   - docker-compose exec django ./cc-test-reporter before-build
 
 script:
-  - docker-compose exec django /entrypoint pytest --cov=mtg_deckbuilder
+  - docker-compose exec django /entrypoint pytest --cov=mtg_deckbuilder --cov-report=xml --cov-report=term
 
 after_script:
   - docker-compose exec django ./cc-test-reporter after-build --id=${CC_TEST_REPORTER_ID} --prefix=/app --exit-code ${TRAVIS_TEST_RESULT}

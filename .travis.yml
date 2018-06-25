@@ -11,24 +11,28 @@ services:
   - docker
 
 env:
-  - COMPOSE_FILE=local.yml PROJECT_NAME=mtg_deckbuilder
+  - DOCKER_COMPOSE_VERSION=1.21.0 COMPOSE_FILE=local.yml PROJECT_NAME=deckbuilder
 
 before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
   - docker --version
   - docker-compose --version
 
 install:
-  - docker-compose --project-name=$PROJECT_NAME up --detach --build
+  - docker-compose --project-name=${PROJECT_NAME} up --detach --build
   - docker ps --all
 
 before_script:
   - wget https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 --output-document=./cc-test-reporter
   - chmod +x ./cc-test-reporter
-  - docker cp ./cc-test-reporter $PROJECT_NAME_django_1:./cc-test-reporter
+  - docker cp ./cc-test-reporter ${PROJECT_NAME}_django_1:./cc-test-reporter
   - docker-compose exec django ./cc-test-reporter before-build
 
 script:
   - docker-compose exec django /entrypoint pytest --cov=mtg_deckbuilder
 
 after_script:
-  - docker-compose exec django ./cc-test-reporter after-build --id=$CC_TEST_REPORTER_ID --exit-code $TRAVIS_TEST_RESULT
+  - docker-compose exec django ./cc-test-reporter after-build --id=${CC_TEST_REPORTER_ID} --exit-code ${TRAVIS_TEST_RESULT}

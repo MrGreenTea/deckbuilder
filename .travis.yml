@@ -15,9 +15,8 @@ env:
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+  - sudo wget https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` --output-document=/usr/local/bin/docker-compose
+  - sudo chmod +x /usr/local/bin/docker-compose
   - docker --version
   - docker-compose --version
 
@@ -35,5 +34,4 @@ script:
   - docker-compose exec django /entrypoint pytest --cov=mtg_deckbuilder
 
 after_script:
-  - docker-compose exec django cat .coverage
   - docker-compose exec django ./cc-test-reporter after-build --id=${CC_TEST_REPORTER_ID} --prefix=/app --exit-code ${TRAVIS_TEST_RESULT}

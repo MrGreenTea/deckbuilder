@@ -15,7 +15,7 @@ before_script:
 install:
   - docker-compose up -d --build
   - docker ps -a
-  - docker cp cc-test-reporter mtg_deckbuilder_django_1:./cc-test-reporter
+  - docker cp ./cc-test-reporter mtg_deckbuilder_django_1:./cc-test-reporter
   - docker-compose exec django ./cc-test-reporter before-build
 script:
   - docker-compose exec django /entrypoint pytest --cov=mtg_deckbuilder

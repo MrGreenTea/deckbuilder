@@ -7,15 +7,16 @@ services:
 
 env:
   - COMPOSE_FILE=local.yml
+  - PROJECT_NAME=mtg_deckbuilder
 
 install:
-  - docker-compose up -d --build
-  - docker ps -a
+  - docker-compose --project-name=$PROJECT_NAME up --detach --build
+  - docker ps --all
 
 before_script:
   - wget https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 --output-document=./cc-test-reporter
   - chmod +x ./cc-test-reporter
-  - docker cp ./cc-test-reporter mtg_deckbuilder_django_1:./cc-test-reporter
+  - docker cp ./cc-test-reporter $PROJECT_NAME_django_1:./cc-test-reporter
   - docker-compose exec django ./cc-test-reporter before-build
 
 script:

@@ -11,6 +11,9 @@ engines:
 exclude_patterns:
   - config/
   - docs/
+  - compose/
+  - locale/
   - "**/tests/"
   - "**/migrations/"
   - ".*"
+  - "*.*"
